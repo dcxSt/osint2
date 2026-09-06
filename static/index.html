@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <title>Fieldnotes — Public profile research</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="Fieldnotes home"><span class="brand-icon">f.</span>fieldnotes<span class="brand-dot">®</span></a>
+    <div class="workspace-label">YOUR WORKSPACE</div>
+    <button class="nav-item active" id="new-research"><span>⌕</span> Profile research <span class="nav-arrow">↗</span></button>
+    <div class="sidebar-note"><span class="small-dot"></span> Local workspace<p>Public sources.<br>Traceable findings.<br>A clearer picture.</p></div>
+    <div class="sidebar-bottom"><span class="avatar">YOU</span><div>Personal workspace<small>Stored in this session</small></div><span>⌘</span></div>
+  </aside>
+  <main>
+    <header class="topbar"><div>Workspace <span>/</span> <strong>Profile research</strong></div><span class="local-status"><i></i> Running locally</span></header>
+    <div class="main-content">
+      <div class="eyebrow"><span class="spark">✳</span> FOLLOW THE SOURCES</div>
+      <section class="intro"><div><h1>A link. A little context.<br>A much clearer picture.</h1><p>Explore someone’s public work, projects, and story.<br>Every finding comes with a source you can check.</p></div><div class="intro-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-center">↗</div><span class="art-node node-one"></span><span class="art-node node-two"></span><span class="art-node node-three"></span><span class="art-cross">+</span></div></section>
+      <section class="search-card" aria-label="Start research">
+        <form id="research-form">
+          <label for="profile-url">START WITH A PUBLIC PROFILE</label>
+          <div class="input-row"><span class="link-icon" aria-hidden="true">↗</span><input id="profile-url" name="url" type="text" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste a social profile or personal website URL" required maxlength="2048"><button id="submit" type="submit">Research profile <span>↗</span></button></div>
+          <div class="search-options"><span class="supported">GitHub <span>·</span> Personal sites <span>·</span> Public profiles</span><div><label for="depth">Link depth</label><select id="depth"><option value="0">0 · seed only</option><option value="1">1 level</option><option value="2" selected>2 levels</option><option value="3">3 levels</option></select><label for="pages">Page limit</label><select id="pages"><option value="5">5</option><option value="10" selected>10</option><option value="20">20</option></select></div></div>
+          <p id="form-error" class="error" role="alert" hidden></p>
+        </form>
+      </section>
+      <p class="scope-note"><span>◈</span> Follows public links and respects site access rules. No login access, face matching, or private-data lookup.</p>
+
+      <section id="empty-state">
+        <div class="section-heading"><h2>A research trail, not a guessing game</h2><span>HOW IT WORKS</span></div>
+        <div class="feature-grid">
+          <article class="feature"><span class="feature-icon">⌁</span><span class="step">01</span><h3>Follow the connections</h3><p>Explore linked websites, biographies, and portfolios with a bounded recursive crawl.</p><div class="feature-footer">Connected public sources <span>↗</span></div></article>
+          <article class="feature"><span class="feature-icon">▤</span><span class="step">02</span><h3>Find the substance</h3><p>Bring together public work, projects, education, and explicitly shared background.</p><div class="feature-footer">Evidence before assumptions <span>↗</span></div></article>
+          <article class="feature"><span class="feature-icon">◎</span><span class="step">03</span><h3>Keep the receipts</h3><p>Check the original source for every excerpt. See exactly what was found and what wasn’t.</p><div class="feature-footer">A report you can verify <span>↗</span></div></article>
+        </div>
+        <div class="empty-bottom"><span class="asterisk">✳</span><div><strong>The internet leaves fragments. Make them useful.</strong><p>Begin with a profile that links to the person’s own website for the richest results.</p></div><span class="bottom-arrow">↗</span></div>
+      </section>
+
+      <section id="results" hidden aria-label="Research results">
+        <div class="report-heading"><div><div id="report-status" class="report-status" role="status" aria-live="polite">RESEARCHING</div><h2 id="profile-name">Public profile</h2><a id="seed-link" target="_blank" rel="noopener noreferrer"></a></div><div class="report-actions"><button class="secondary" id="cancel">Stop research</button><a class="secondary" id="export-md" download>↓ Markdown</a><a class="secondary" id="export-json" download>↓ JSON</a></div></div>
+        <div class="stats"><div><strong id="source-count">0</strong><span>Sources collected</span></div><div><strong id="finding-count">0</strong><span>Sourced excerpts</span></div><div><strong id="project-count">0</strong><span>Public repositories</span></div><div><strong id="gap-count">0</strong><span>Coverage gaps</span></div></div>
+        <div class="tabs" role="tablist" aria-label="Research views"><button class="tab active" role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="true" data-tab="summary">Overview</button><button class="tab" role="tab" id="tab-sources" aria-controls="panel-sources" aria-selected="false" tabindex="-1" data-tab="sources">Source trail</button><button class="tab" role="tab" id="tab-activity" aria-controls="panel-activity" aria-selected="false" tabindex="-1" data-tab="activity">Activity & gaps</button></div>
+        <div id="panel-summary" role="tabpanel" aria-labelledby="tab-summary"><div class="method-note">An extractive brief: excerpts retain the source’s wording. Linked pages are not independent identity verification.</div><div id="summary-content"></div><div id="work-content"></div></div>
+        <div id="panel-sources" role="tabpanel" aria-labelledby="tab-sources" hidden><div id="sources-content"></div><div id="candidates-content"></div></div>
+        <div id="panel-activity" role="tabpanel" aria-labelledby="tab-activity" hidden><div id="gaps-content"></div><div class="activity-log" id="activity-content"></div></div>
+      </section>
+      <footer class="page-footer"><span><b>fieldnotes</b> / Open sources, clear context.</span><span>Built for curiosity. Grounded in evidence.</span></footer>
+    </div>
+  </main>
+</body>
+</html>
